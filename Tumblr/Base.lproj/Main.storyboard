@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Photos View Controller-->
+        <!--Photos-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="PhotosViewController" customModule="Tumblr" customModuleProvider="target" sceneMemberID="viewController">
@@ -45,7 +45,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ZRw-Jt-iPB"/>
+                    <navigationItem key="navigationItem" title="Photos" id="ZRw-Jt-iPB"/>
                     <connections>
                         <outlet property="tableView" destination="0Iu-1W-p79" id="HEd-Mo-iQ7"/>
                     </connections>
@@ -54,7 +54,7 @@
             </objects>
             <point key="canvasLocation" x="672.5" y="154.5"/>
         </scene>
-        <!--Photo Details View Controller-->
+        <!--Detail-->
         <scene sceneID="iEG-lE-8qR">
             <objects>
                 <viewController id="gzO-0p-LtV" customClass="PhotoDetailsViewController" customModule="Tumblr" customModuleProvider="target" sceneMemberID="viewController">
@@ -69,7 +69,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="TgV-ng-gn3"/>
+                    <navigationItem key="navigationItem" title="Detail" id="TgV-ng-gn3"/>
                     <connections>
                         <outlet property="photoView" destination="83e-5U-JKM" id="64h-AQ-fVA"/>
                     </connections>

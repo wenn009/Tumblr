@@ -16,7 +16,8 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     var posts:[NSDictionary]?
     var isMoreDataLoading = false;
     var loadingMoreView: InfiniteScrollActivityView?
-    
+    var postsLoaded = 0
+    var contentOffset = 4
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     
     func networkrequest(){
     // Do any additional setup after loading the view.
-        let url = URL(string:"https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")
+        let url = URL(string: "https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV&offset=\(postsLoaded)&limit=\(contentOffset)")
         let request = URLRequest(url: url!)
         let session = URLSession(configuration: URLSessionConfiguration.default,delegate:nil,
             delegateQueue:OperationQueue.main)
@@ -62,7 +63,8 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     // This is where you will store the returned array of posts in your posts property
     //self.feeds = responseFieldDictionary["posts"] as! [NSDictionary]
                 self.posts = responseFieldDictionary["posts"] as? [NSDictionary]
-                //self.isMoreDataLoading = false
+                self.postsLoaded += self.contentOffset
+                self.loadingMoreView!.stopAnimating()
                 self.tableView.reloadData()
             }
         }
@@ -80,6 +82,10 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated:true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -136,33 +142,8 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func loadMoreData() {
-        let url = URL(string:"https://api.tumblr.com/v2/blog/humansofnewyork.tumblr.com/posts/photo?api_key=Q6vHoaVm5L1u2ZAW1fqv3Jw48gFzYVg9P0vH0VHl3GVy6quoGV")
-        let request = URLRequest(url: url!)
-        let session = URLSession(configuration: URLSessionConfiguration.default,delegate:nil,
-                                 delegateQueue:OperationQueue.main)
-        
-        let task : URLSessionDataTask = session.dataTask(with: request as URLRequest,completionHandler: { (data, response, error) in
-            if let data = data {
-                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary {
-                    //print("responseDictionary: \(responseDictionary)")
-                    self.isMoreDataLoading = false
-                    self.loadingMoreView!.stopAnimating()
-                    // Recall there are two fields in the response dictionary, 'meta' and 'response'.
-                    // This is how we get the 'response' field
-                    let responseFieldDictionary = responseDictionary["response"] as! NSDictionary
-                    
-                    // This is where you will store the returned array of posts in your posts property
-                    //self.feeds = responseFieldDictionary["posts"] as! [NSDictionary]
-                    self.posts = responseFieldDictionary["posts"] as? [NSDictionary]
-                    //self.isMoreDataLoading = false
-                    
-                    self.tableView.reloadData()
-                }
-            }
-            
-            
-        });
-        task.resume()
+        networkrequest()
+        self.isMoreDataLoading = false
         
     }
 
