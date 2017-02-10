@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="xvI-UL-w2v">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -22,11 +22,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="photoCell" rowHeight="240" id="S4y-1M-I7X" customClass="photoCell" customModule="Tumblr" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="photoCell" rowHeight="240" id="S4y-1M-I7X" customClass="photoCell" customModule="Tumblr" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="240"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S4y-1M-I7X" id="FH3-wB-nC3">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="239"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="239"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="9ds-Uv-C4S">
@@ -37,6 +37,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="feedImage" destination="9ds-Uv-C4S" id="Bqj-FT-vDT"/>
+                                            <segue destination="gzO-0p-LtV" kind="push" id="YWu-WH-CVi"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -44,11 +45,54 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ZRw-Jt-iPB"/>
                     <connections>
                         <outlet property="tableView" destination="0Iu-1W-p79" id="HEd-Mo-iQ7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="672.5" y="154.5"/>
+        </scene>
+        <!--Photo Details View Controller-->
+        <scene sceneID="iEG-lE-8qR">
+            <objects>
+                <viewController id="gzO-0p-LtV" customClass="PhotoDetailsViewController" customModule="Tumblr" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dKL-3m-Azh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" id="83e-5U-JKM">
+                                <rect key="frame" x="0.0" y="66" width="375" height="601"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TgV-ng-gn3"/>
+                    <connections>
+                        <outlet property="photoView" destination="83e-5U-JKM" id="64h-AQ-fVA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jLH-8h-ShD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1179.5" y="142.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Cky-3t-GBO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xvI-UL-w2v" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6Zm-Jt-jxp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="V75-kK-bub"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="biK-1f-7dR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="85.5" y="154.5"/>
         </scene>
